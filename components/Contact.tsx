@@ -3,7 +3,7 @@
 import {Roboto} from 'next/font/google'
 import { Mail, MessageCircleMoreIcon, UserCircleIcon } from "lucide-react"
 import {type FieldValues, useForm } from "react-hook-form"
-
+import {toast} from 'react-hot-toast'
 const roboto = Roboto ({
   weight: '500',
   subsets: ['latin'],
@@ -22,11 +22,11 @@ const Contact = () => {
     })
 
     if(response.ok){
-      console.log('Email sent successfully');
+      toast.success('Email sent Successfully')
     }
 
     if(!response.ok){
-      console.log('Some Problem Occured While sending the Mail');
+      toast.error('Some Problem Occured While sending the Mail');
     }
 
     reset();
