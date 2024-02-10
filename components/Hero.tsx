@@ -24,7 +24,8 @@ const Hero = () => {
           initial={{opacity:0, x:"-100%"}}
           animate={{opacity:1, x:0}} 
           transition={{ duration: 0.8 }}
-           className={`text-7xl ${montserrat.className} text-slate-700 dark:text-slate-200`}>
+           className={` text-7xl ${montserrat.className} text-slate-700 dark:text-slate-200`}
+           >
             Hey there, I'm <span className='bg-clip-text text-transparent bg-gradient-to-t from-purple-700 to-blue-600'>Saurabh Thapliyal</span>.
           </motion.div>
           <motion.div 
