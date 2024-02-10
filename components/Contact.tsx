@@ -3,7 +3,7 @@
 import {Roboto} from 'next/font/google'
 import { Mail, MessageCircleMoreIcon, UserCircleIcon } from "lucide-react"
 import {type FieldValues, useForm } from "react-hook-form"
-import {toast} from 'react-hot-toast'
+import toast from "react-hot-toast";
 const roboto = Roboto ({
   weight: '500',
   subsets: ['latin'],
@@ -22,11 +22,11 @@ const Contact = () => {
     })
 
     if(response.ok){
-      toast.success('Email sent Successfully')
+       toast.success('Email Sent Successfully')
     }
 
     if(!response.ok){
-      toast.error('Some Problem Occured While sending the Mail');
+       toast.error('Some Problem Occured While sending the Mail');
     }
 
     reset();
@@ -46,12 +46,14 @@ const Contact = () => {
      >
         <div className="w-full h-full relative flex flex-col">
           <input 
-          {...register('name', {
-            required:"Please enter your name"
-          })}
-          placeholder="Name" 
-          className=" py-2 pr-4 pl-12 dark:bg-white/10 bg-white/50 rounded-lg" 
-          type='text' />
+            {...register('name', {
+              required:"Please enter your name"
+            })}
+            placeholder="Name" 
+            className=" py-2 pr-4 pl-12 dark:bg-white/10 bg-white/50 rounded-lg" 
+            type='text' 
+            disabled={isSubmitting}
+          />
           <UserCircleIcon size={30} className="absolute left-2 top-1 text-blue-600" />
         </div>
         {errors.name && (
@@ -66,7 +68,9 @@ const Contact = () => {
           })}
           placeholder="Email" 
           type='email' 
-          className=" py-2  pr-4 dark:bg-white/10 bg-white/50 pl-12 rounded-lg"/>
+          disabled={isSubmitting}
+          className=" py-2  pr-4 dark:bg-white/10 bg-white/50 pl-12 rounded-lg"
+          />
           <Mail size={30} className="absolute left-2 top-1 text-blue-600" />
         </div>
         {errors.email && (
@@ -84,6 +88,7 @@ const Contact = () => {
             }
           })}
           placeholder="Message" 
+          disabled={isSubmitting}
           className=" py-2 pr-4 bg-white/50  dark:bg-white/10 min-h-64 pl-12 rounded-lg" />
           <MessageCircleMoreIcon size={30} className="absolute left-2 top-1 text-blue-600"/>
         </div>
@@ -95,7 +100,7 @@ const Contact = () => {
         <button 
         className={`bg-gradient-to-tr from-blue-500 to-violet-500  py-2 w-full 
                     rounded-lg text-slate-100 hover:bg-gradient-to-bl
-                    ${'disabled:from-blue-700 disabled:to-violet-700'}`}
+                    ${'disabled:from-blue-700 '}`}
         type='submit'
         disabled={isSubmitting}
         >Send Mail</button>
