@@ -84,7 +84,7 @@ const Contact = () => {
             }
           })}
           placeholder="Message" 
-          className=" py-2 pr-4 bg-white/50  dark:bg-white/10 min-h-80 pl-12 rounded-lg" />
+          className=" py-2 pr-4 bg-white/50  dark:bg-white/10 min-h-64 pl-12 rounded-lg" />
           <MessageCircleMoreIcon size={30} className="absolute left-2 top-1 text-blue-600"/>
         </div>
         {errors.message && (

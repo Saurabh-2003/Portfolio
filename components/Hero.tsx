@@ -18,8 +18,8 @@ const Hero = () => {
 
 
   return (
-    <div  className={`flex max-md:flex-col relative  z-10 gap-2 px-28  items-center h-[100svh] `}  >  
-        <div className='flex flex-col w-2/5 '>
+    <div  className={`flex max-md:pt-16 max-md:px-0 max-md:flex-col mx-auto z-10 gap-2 px-28 justify-between  items-center min-h-[100svh] `}  >  
+        <div className='flex max-md:w-4/5 flex-col w-2/5 '>
           <motion.div 
           initial={{opacity:0, x:"-100%"}}
           animate={{opacity:1, x:0}} 
@@ -50,9 +50,9 @@ const Hero = () => {
           initial= {{opacity:0,y:"-100%"}}
           animate = {{opacity:1, y:0}} 
           transition={{ duration: 0.6, delay:.1 }}
-        className='h-full w-1/2 ml-auto relative flex items-center magicpattern pt-12'>
-        <div className="mask">
-          <img src='/me.png' className='h-[500px]  rounded-full ml-auto mr-8 mt-24 brightness-125' />
+        className='h-full  flex items-center pt-12'>
+        <div className="h-[500px] w-[500px] max-md:h-[300px] max-md:w-[300px] overflow-hidden rounded-full bg-gradient-radial from-blue-500 to-violet-500">
+          <img src='/me.png' className=' mt-6 brightness-125' />
         </div>
       </motion.div>
 

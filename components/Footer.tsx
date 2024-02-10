@@ -24,26 +24,26 @@ const Footer = () => {
           <h1 className="text-slate-600 dark:text-slate-400"> Links</h1>
           <ul className="text-slate-500 text-sm">
             <li>Home</li>
-            <li>Contact Us</li>
-            <li>Explore</li>
-            <li>Vehichle Explorer</li>
-            <li>Terms of use</li>
+            <li>Contact Me</li>
+            <li>Projects</li>
+            <li>Socials</li>
+            <li>Skills</li>
           </ul>
         </div>
         <div>
-        <h1 className="text-slate-600 dark:text-slate-400"> Account</h1>
+        <h1 className="text-slate-600 dark:text-slate-400"> Coding Profiles</h1>
           <ul className="text-slate-500 text-sm">
-            <li>Login</li>
-            <li>Signup</li>
-            <li>Forgot Password</li>
-            <li>Contact</li>
+            <li>Leetcode</li>
+            <li>Codeforces</li>
+            <li>Github</li>
+            <li>Geek For Geeks</li>
           </ul>
 
         </div>
     </div>
     <div className="flex text-sm text-slate-600 justify-between pt-4">
-        <div>@All rights reserved. Saurabh Thapliyal</div>
-        <div>Terms and condition</div>
+        <div>@ Saurabh Thapliyal</div>
+        <div>Graphic Era Hill University</div>
     </div>
   </footer>
 }
