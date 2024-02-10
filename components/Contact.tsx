@@ -4,33 +4,70 @@ import {Roboto} from 'next/font/google'
 import { Mail, MessageCircleMoreIcon, UserCircleIcon } from "lucide-react"
 import {type FieldValues, useForm } from "react-hook-form"
 import toast from "react-hot-toast";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { TcontactSchema, contactSchema } from '@/utils/types';
+
 const roboto = Roboto ({
   weight: '500',
   subsets: ['latin'],
 })
 
+
+
 const Contact = () => {
-  const {register, handleSubmit, formState:{errors, isSubmitting}, reset} = useForm();
+  const {register, 
+          handleSubmit,
+          formState:{errors, isSubmitting}, 
+          reset,
+          setError,
+        } = useForm<TcontactSchema>({
+        resolver:zodResolver(contactSchema)
+      });
 
-  const onSubmit = async(data:FieldValues) => {
-    const response = await fetch('/api/send-mail', {
-      method:'POST',
-      headers: {
-        'Content-Type' : 'application/json'
-      },
-      body:JSON.stringify(data)
-    })
-
-    if(response.ok){
-       toast.success('Email Sent Successfully')
+      const onSubmit = async(data:TcontactSchema) => {
+        const response = await fetch('/api/send-mail', {
+          method:'POST',
+          headers: {
+            'Content-Type' : 'application/json'
+          },
+          body:JSON.stringify({
+            name:data.name,
+            email:data.email,
+            message:data.message
+          })
+        });
+    
+        if (response.ok) {
+           toast.success('Email Sent Successfully');
+           reset();
+        } else {
+          const responseData = await response.json();
+          if (responseData.errors) {
+            const errors = responseData.errors;
+            if (errors.name) {
+              setError("name", {
+                type: "server",
+                message: errors.name
+              });
+            }
+            if (errors.email) {
+              setError('email', {
+                type: 'server',
+                message: errors.email
+              });
+            }
+            if (errors.message) {
+              setError('message', {
+                type: 'server',
+                message: errors.message
+              });
+            }
+          } else {
+            toast.error("Something went wrong!");
+          }
+        }
     }
-
-    if(!response.ok){
-       toast.error('Some Problem Occured While sending the Mail');
-    }
-
-    reset();
-  }
+    
 
   return (
     <div className='w-full grid place-items-center'>
@@ -46,9 +83,7 @@ const Contact = () => {
      >
         <div className="w-full h-full relative flex flex-col">
           <input 
-            {...register('name', {
-              required:"Please enter your name"
-            })}
+            {...register('name')}
             placeholder="Name" 
             className=" py-2 pr-4 pl-12 dark:bg-white/10 bg-white/50 rounded-lg" 
             type='text' 
@@ -63,9 +98,7 @@ const Contact = () => {
 
         <div className="w-full h-full relative flex flex-col">
           <input 
-          {...register('email', {
-            required:"Please enter your Email Address "
-          })}
+          {...register('email')}
           placeholder="Email" 
           type='email' 
           disabled={isSubmitting}
@@ -80,13 +113,7 @@ const Contact = () => {
 
         <div className="w-full h-full relative flex flex-col ">
           <textarea 
-          {...register('message', {
-            required:"Please enter your Message ",
-            minLength: {
-              value:20,
-              message:"Message should be atleast 20 characters long"
-            }
-          })}
+          {...register('message')}
           placeholder="Message" 
           disabled={isSubmitting}
           className=" py-2 pr-4 bg-white/50  dark:bg-white/10 min-h-64 pl-12 rounded-lg" />
