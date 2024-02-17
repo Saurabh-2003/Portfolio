@@ -7,11 +7,19 @@ import Projects from '@/components/Projects'
 import Socials from '@/components/Socials'
 import TechStack from '@/components/TechStack'
 import Contact from '@/components/Contact'
+import { Montserrat } from 'next/font/google';
+
+const montserrat = Montserrat({
+  weight: '500',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 
 const Home = () => {
 
   return (
-   <main >
+   <main className={`${montserrat.className}`}>
      <section id='home'>
       <Hero />
     </section>

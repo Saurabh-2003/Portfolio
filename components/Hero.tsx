@@ -24,7 +24,7 @@ const Hero = () => {
           initial={{opacity:0, x:"-100%"}}
           animate={{opacity:1, x:0}} 
           transition={{ duration: 0.8 }}
-           className={` text-7xl ${montserrat.className} text-slate-700 dark:text-slate-200`}
+           className={` text-7xl  text-slate-700 dark:text-slate-200`}
            >
             Hey there, I'm <span className='bg-clip-text text-transparent bg-gradient-to-t from-purple-700 to-blue-600'>Saurabh Thapliyal</span>.
           </motion.div>
@@ -33,14 +33,14 @@ const Hero = () => {
             animate = {{opacity: 1, x:0}}
             transition={{ duration: 0.8 }}
             className='  text-lg text-ellipsis dark:text-slate-300 text-slate-600'>
-              As a passionate Computer Science Engineering student, I thrive on turning ideas into reality through technology. Welcome to my digital playground!
+              Full Stack Web Developer | Machine Learning Enthusiast | Computer Science Engineering Student at Graphic Era Hill University
           </motion.div>
           <motion.div
             initial= {{opacity:0,y:"100%"}}
             animate = {{opacity:1, y:0}}
             transition={{ duration: 0.8 }}
           >
-            <a href="#projects" className={`${inter.className} mx-auto  text-white bg-gradient-to-tr w-1/2 grid place-content-center rounded-3xl mt-10 h-10 from-purple-600 to-blue-600 dark:text-slate-300 dark:hover:text-slate-100 hover:cursor-pointer`}>
+            <a href="#projects" className={` mx-auto  text-white bg-gradient-to-tr w-1/2 grid place-content-center rounded-3xl mt-10 h-10 from-purple-600 to-blue-600 dark:text-slate-300 dark:hover:text-slate-100 hover:cursor-pointer`}>
             Explore My Work
           </a>
           </motion.div>
