@@ -27,8 +27,8 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ image, link, topicName, description, tech}) => {
   return (
-    <div className=' mb-4 grid  place-items-center'>
-      <div className='w-[310px] h-[320px]   flex flex-col overflow-hidden
+    <div className=' mb-4 flex  flex-wrap items-center justify-center'>
+      <div className='w-[310px] h-[320px] flex flex-col overflow-hidden
           flex-wrap bg-white/30 rounded-lg dark:bg-gradient-to-r to-violet-100 from-blue-100 '>
         <img className='h-[170px] w-full object-fill' src={image} alt={topicName} />
         <a
