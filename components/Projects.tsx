@@ -11,21 +11,21 @@ const roboto = Roboto ({
 
 const projects = [
   {
-    img: '/code_fusion.png',
+    img: 'https://res.cloudinary.com/djw8cxrrp/image/upload/v1708596082/portfolio/v9to1wiorlej9fzmioeg.png',
     name: 'Code Fusion',
     description: 'A real time collaborative code editor for multiple programming languages',
     link: 'https://code-fusion-frontend.vercel.app/',
     tech: 'ReactJS, NodeJS, Javascript, Tailwind-css and Framer-Motion'
   },
   {
-    img: '/react-chat.png',
+    img: 'https://res.cloudinary.com/djw8cxrrp/image/upload/v1708596112/portfolio/regf0smu0zddkb3ivbq7.png',
     name: 'Chat App',
     description: "An awesome application that lets you connect with your friends and family anytime, anywhere. 🌐✨",
     link: "https://ww.wxampl.com",
     tech:"React, MongoDB, Nodejs, express and socketIO"
   },
   {
-    img:'/e-commerce.png',
+    img:'https://res.cloudinary.com/djw8cxrrp/image/upload/v1708596118/portfolio/gz32nvro0ohl8t7q3jis.png',
     name:"E-commerce App",
     description: 'A cutting-edge E-commerce application with a sleek and intuitive user interface.',
     link: 'https://your-ecommerce-app.com',
@@ -33,7 +33,7 @@ const projects = [
   },
 
   {
-    img: '/music.png',
+    img: 'https://res.cloudinary.com/djw8cxrrp/image/upload/v1708596107/portfolio/gxilqhqmw5gqotya3ifj.png',
     name: 'Music Streaming Platform',
     description: 'A music streaming app clone with a modern user interface and powerful features.',
     link: 'https://spotify-clone-app.com',
