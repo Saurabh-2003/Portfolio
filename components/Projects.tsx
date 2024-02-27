@@ -18,10 +18,10 @@ const projects = [
     tech: 'ReactJS, NodeJS, Javascript, Tailwind-css and Framer-Motion'
   },
   {
-    img: 'https://res.cloudinary.com/djw8cxrrp/image/upload/v1708596112/portfolio/regf0smu0zddkb3ivbq7.png',
+    img: 'https://res.cloudinary.com/djw8cxrrp/image/upload/v1709005176/portfolio/rqownukgjrzop6xxaas2.png',
     name: 'Chat App',
     description: "An awesome application that lets you connect with your friends and family anytime, anywhere. 🌐✨",
-    link: "https://ww.wxampl.com",
+    link: "https://chat-app-react-frontend.vercel.app/",
     tech:"React, MongoDB, Nodejs, express and socketIO"
   },
   {
@@ -31,7 +31,6 @@ const projects = [
     link: 'https://your-ecommerce-app.com',
     tech: 'MongoDb, Express, Node JS, Express and Redux for global state managaement',
   },
-
   {
     img: 'https://res.cloudinary.com/djw8cxrrp/image/upload/v1708596107/portfolio/gxilqhqmw5gqotya3ifj.png',
     name: 'Music Streaming Platform',
