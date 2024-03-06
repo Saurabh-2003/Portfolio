@@ -44,7 +44,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <div className='relative flex flex-col items-center justify-center  text-white overflow-hidden'>
+    <div className='relative min-h-screen flex flex-col items-center justify-center  text-white overflow-hidden'>
       <div className='py-20 px-10'>
         <h1 className={`text-4xl text-center mb-14 text-slate-500 ${roboto.className}`}>
            <span className='bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600'>My </span>

@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <nav>
       <div className={`fixed flex flex-col z-20  w-full items-center justify-center`}>
-        <ul className={`flex gap-6  mx-auto  text-sm items-center overflow-hidden
+        <ul className={`flex gap-6 max-sm:w-full max-sm:justify-center  mx-auto  text-sm items-center overflow-hidden
                backdrop-blur-sm text-slate-200 px-10  max-sm:rounded-none   
                rounded-full bg-white/10 mt-2 max-sm:mt-0`}>
           

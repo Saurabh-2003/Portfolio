@@ -20,8 +20,8 @@ const inter = Inter({
 
 const Skills = () => {
   return (
-    <div className='relative text-white overflow-hidden py-10 px-10'>
-      <h1 className={`text-4xl text-center text-slate-500 ${roboto.className}`}>
+    <div className='relative min-h-screen text-white overflow-hidden py-10 px-10'>
+      <h1 className={`text-4xl text-center text-slate-500 mt-16 ${roboto.className}`}>
         My <span className='bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600'>Skills</span>
       </h1>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8'>

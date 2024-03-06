@@ -29,9 +29,6 @@ const Home = () => {
     <section id='projects'>
       <Projects/>
     </section>
-    <section id='socials'>
-      <Socials/>
-    </section>
     <section id='contact'>
       <Contact/>
     </section>

@@ -5,7 +5,7 @@ import TypeEffect from './TypeEffect';
 
 const Hero = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen text-white overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center h-screen pt-20 text-white overflow-hidden">
       {/* Background patterns */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute w-64 h-64 bg-gradient-to-br from-yellow-500 to-pink-500 rounded-full top-1/4 left-1/4 transform translate-x-1/4 translate-y-1/4 opacity-20"></div>
@@ -16,7 +16,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.2 }}
       >
-        <img src="/me.png" className="rounded-full mb-4 w-80 h-80 border-2 border-slate-500/50 bg-slate-100/50 backdrop-blur-sm  shadow-lg" alt="Portrait" />
+        <img src="/me.png" className="rounded-full mb-4 w-80  h-80 border-2 border-slate-500/50 bg-slate-100/50 backdrop-blur-sm  shadow-lg" alt="Portrait" />
         
       </motion.div>
 

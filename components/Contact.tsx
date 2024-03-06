@@ -67,8 +67,8 @@ const Contact = () => {
   }
 
   return (
-    <div className='w-full grid place-items-center'>
-      <div className={`text-4xl pt-10 underline text-center bg-clip-text bg-gradient-to-br font-mono from-violet-500 to-blue-600 text-transparent ${roboto.className}`}>
+    <div className='w-full h-screen grid place-items-center'>
+      <div className={`text-4xl pt-20 underline text-center bg-clip-text bg-gradient-to-br font-mono from-violet-500 to-blue-600 text-transparent ${roboto.className}`}>
         Contact <span className="text-slate-500">Me</span>
       </div>
       <form
@@ -117,7 +117,7 @@ const Contact = () => {
         )}
 
         <button
-          className={`bg-gradient-to-tr from-blue-500 to-violet-500 py-2 w-full rounded-full text-slate-100 hover:bg-gradient-to-bl ${'disabled:from-blue-700 '}`}
+          className={`bg-gradient-to-tr from-blue-500 to-violet-500 py-2 w-full rounded-full text-slate-100 hover:bg-gradient-to-bl disabled:from-transparent disabled:border disabled:cursor-not-allowed`}
           type='submit'
           disabled={isSubmitting}
         >
