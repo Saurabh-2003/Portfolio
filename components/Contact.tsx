@@ -1,5 +1,3 @@
-// Contact.tsx
-
 import React from 'react';
 import { Roboto } from 'next/font/google';
 import { type FieldValues, useForm } from "react-hook-form";
@@ -9,8 +7,8 @@ import { TcontactSchema, contactSchema } from '@/utils/types';
 import { IoMdMail } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { RiMessage2Fill } from "react-icons/ri";
-import { GrSend } from "react-icons/gr";
-
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const roboto = Roboto({
   weight: '500',
@@ -66,14 +64,30 @@ const Contact = () => {
     }
   }
 
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.5, 
+  });
+
   return (
-    <div className='w-full h-screen grid place-items-center'>
-      <div className={`text-4xl pt-20 underline text-center bg-clip-text bg-gradient-to-br font-mono from-violet-500 to-blue-600 text-transparent ${roboto.className}`}>
+    <div ref={ref} className='w-full h-screen grid place-items-center'>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.6 }}
+        className={`text-4xl pt-20 underline text-center bg-clip-text bg-gradient-to-br font-mono from-violet-500 to-blue-600 text-transparent ${roboto.className}`}
+      >
         Contact <span className="text-slate-500">Me</span>
-      </div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, delay:0.1}}
+        className='w-full'
+     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="lg:w-2/4 w-full grid place-items-center lg:p-10 p-4 gap-4 text-slate-100 antialiased"
+        className="lg:w-2/4 mx-auto w-full grid place-items-center lg:p-10 p-4 gap-4 text-slate-100 antialiased"
       >
         <div className="w-full h-full relative flex flex-col">
           <input
@@ -124,6 +138,7 @@ const Contact = () => {
           Send Mail
         </button>
       </form>
+      </motion.div>
     </div>
   );
 }

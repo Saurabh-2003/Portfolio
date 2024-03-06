@@ -20,7 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, link, topicName, descr
   return (
     <div className='flex rounded-xl flex-col relative group overflow-hidden w-[310px] h-[200px] items-center justify-center mb-4'>
       <img className='h-full w-full object-fill' src={image} alt={topicName} />
-      <div className=' translate-y-[75%] transition-all duration-700 group-hover:rounded-t-xl group-hover:translate-y-0 absolute w-full h-full mt-10 flex flex-col overflow-hidden bg-slate-200 backdrop-blur-md '>
+      <div className=' translate-y-[75%] transition-all duration-700 group-hover:rounded-t-xl group-hover:translate-y-0 absolute w-full h-full mt-10 flex flex-col overflow-hidden bg-white/60 backdrop-blur-md '>
         <span className='text-indigo-500 text-center text-xl font-bold'>{topicName}</span>
         <div className='px-2'>
           <p className='text-slate-700 font-bold'>{description}</p>

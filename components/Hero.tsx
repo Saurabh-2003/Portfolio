@@ -2,11 +2,22 @@
 
 import { motion } from 'framer-motion';
 import TypeEffect from './TypeEffect';
+import { useInView } from 'react-intersection-observer';
 
 const Hero = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.5, 
+  });
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen pt-20 text-white overflow-hidden">
-      {/* Background patterns */}
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+      transition={{ duration: .8 }}
+    className="relative flex flex-col items-center justify-center min-h-screen text-white overflow-hidden"
+    >
+      
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute w-64 h-64 bg-gradient-to-br from-yellow-500 to-pink-500 rounded-full top-1/4 left-1/4 transform translate-x-1/4 translate-y-1/4 opacity-20"></div>
         <div className="absolute w-64 h-64 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-full top-1/2 right-1/4 transform -translate-x-1/4 -translate-y-1/4 opacity-20"></div>
@@ -14,9 +25,9 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        transition={{ duration: 1, delay: .5 }}
       >
-        <img src="/me.png" className="rounded-full mb-4 w-80  h-80 border-2 border-slate-500/50 bg-slate-100/50 backdrop-blur-sm  shadow-lg" alt="Portrait" />
+        <img src="/me.png" className="rounded-full mb-4 w-80  h-80  bg-slate-300 backdrop-blur-sm  shadow-lg" alt="Portrait" />
         
       </motion.div>
 
@@ -48,17 +59,17 @@ const Hero = () => {
         <motion.a 
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.7 }}
+        transition={{ duration: 1 }}
             href='#projects'
-            className="relative border inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-900 py-1 px-10 text-sm font-medium text-white backdrop-blur-3xl">
+            className="relative border group  hover:border-indigo-500  inline-flex h-12 overflow-hidden rounded-full p-[1px] f">
+            <span className="inline-flex h-full  w-full cursor-pointer transition duration-300 group-hover:text-indigo-500 items-center justify-center rounded-full group-hover:bg-slate-900 py-1 px-10 text-sm font-medium text-white backdrop-blur-3xl">
               Explore My Work
             </span>
         </motion.a>
 
       </div>
       
-    </div>
+    </motion.div>
   );
 };
 
