@@ -1,63 +1,64 @@
+// Hero.tsx
 
-import { Montserrat, Inter } from 'next/font/google';
-import {motion} from 'framer-motion'
-
-const montserrat = Montserrat({
-  weight: '500',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const inter = Inter({
-  weight: '500',
-  subsets: ['latin'],
-  display: 'swap',
-})
+import { motion } from 'framer-motion';
+import TypeEffect from './TypeEffect';
 
 const Hero = () => {
-
-
   return (
-    <div  className={`flex max-md:pt-16 max-md:px-0 max-md:flex-col mx-auto z-10 gap-2 px-28 justify-between  items-center min-h-[100svh] `}  >  
-        <div className='flex max-md:w-4/5 flex-col w-2/5 '>
-          <motion.div 
-          initial={{opacity:0, x:"-100%"}}
-          animate={{opacity:1, x:0}} 
-          transition={{ duration: 0.8 }}
-           className={` text-7xl  text-slate-700 dark:text-slate-200`}
-           >
-            Hey there, I'm <span className='bg-clip-text text-transparent bg-gradient-to-t from-purple-700 to-blue-600'>Saurabh Thapliyal</span>.
-          </motion.div>
-          <motion.div 
-            initial = {{opacity:0,x:"100%"}}
-            animate = {{opacity: 1, x:0}}
-            transition={{ duration: 0.8 }}
-            className='  text-lg text-ellipsis dark:text-slate-300 text-slate-600'>
-              Full Stack Web Developer | Machine Learning Enthusiast | Computer Science Engineering Student at Graphic Era Hill University
-          </motion.div>
-          <motion.div
-            initial= {{opacity:0,y:"100%"}}
-            animate = {{opacity:1, y:0}}
-            transition={{ duration: 0.8 }}
-          >
-            <a href="#projects" className={` mx-auto  text-white bg-gradient-to-tr w-1/2 grid place-content-center rounded-3xl mt-10 h-10 from-purple-600 to-blue-600 dark:text-slate-300 dark:hover:text-slate-100 hover:cursor-pointer`}>
-            Explore My Work
-          </a>
-          </motion.div>
-
-        </div>
-        <motion.div
-          initial= {{opacity:0,y:"-100%"}}
-          animate = {{opacity:1, y:0}} 
-          transition={{ duration: 0.6, delay:.1 }}
-        className='h-full  flex items-center pt-12'>
-        <div className="h-[500px] w-[500px] max-md:h-[300px] max-md:w-[300px] overflow-hidden rounded-full bg-gradient-radial from-blue-500 to-violet-500">
-          <img src='/me.png' className=' mt-6 brightness-125' />
-        </div>
+    <div className="relative flex flex-col items-center justify-center h-screen text-white overflow-hidden">
+      {/* Background patterns */}
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute w-64 h-64 bg-gradient-to-br from-yellow-500 to-pink-500 rounded-full top-1/4 left-1/4 transform translate-x-1/4 translate-y-1/4 opacity-20"></div>
+        <div className="absolute w-64 h-64 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-full top-1/2 right-1/4 transform -translate-x-1/4 -translate-y-1/4 opacity-20"></div>
+      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1.2 }}
+      >
+        <img src="/me.png" className="rounded-full mb-4 w-80 h-80 border-2 border-slate-500/50 bg-slate-100/50 backdrop-blur-sm  shadow-lg" alt="Portrait" />
+        
       </motion.div>
 
-  </div>
+      <div className="z-10 max-w-4xl text-center relative">
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-5xl md:text-6xl font-bold mb-6"
+        >
+          Hey there, I'm{' '}
+          <motion.span
+            className="text-indigo-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <TypeEffect />
+          </motion.span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-lg text-slate-300 font-extralight md:text-xl antialiased mb-8"
+        >
+          Full Stack Web Developer | Machine Learning Enthusiast | Computer Science Engineering Student
+        </motion.p>
+        <motion.a 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.7 }}
+            href='#projects'
+            className="relative border inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-900 py-1 px-10 text-sm font-medium text-white backdrop-blur-3xl">
+              Explore My Work
+            </span>
+        </motion.a>
 
+      </div>
+      
+    </div>
   );
 };
 

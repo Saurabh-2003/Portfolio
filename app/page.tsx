@@ -19,15 +19,12 @@ const montserrat = Montserrat({
 const Home = () => {
 
   return (
-   <main className={`${montserrat.className}`}>
+   <main className={`${montserrat.className} bg-gradient-to-b from-gray-900 to-gray-800`}>
      <section id='home'>
       <Hero />
     </section>
     <section id='skills' >
       <Skills/>
-    </section>
-    <section>
-      <TechStack/>
     </section>
     <section id='projects'>
       <Projects/>
@@ -35,7 +32,7 @@ const Home = () => {
     <section id='socials'>
       <Socials/>
     </section>
-    <section>
+    <section id='contact'>
       <Contact/>
     </section>
    </main>

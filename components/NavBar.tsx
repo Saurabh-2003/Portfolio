@@ -1,66 +1,47 @@
-"use client";
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import {Moon, Sun} from 'lucide-react'
+import { GoHomeFill } from 'react-icons/go';
+import { GiSkills } from 'react-icons/gi';
+import { GrProjects } from 'react-icons/gr';
+import { MdContactMail } from 'react-icons/md';
+import { IoIosMail } from 'react-icons/io';
+import { FaUserCircle } from 'react-icons/fa';
+import { ImPower } from 'react-icons/im';
+import { IoChatbubbles } from 'react-icons/io5';
 const NavBar = () => {
-  const [dark, setDark] = useState('light');
-
-  const toggleTheme = () => {
-    const window = document.documentElement;
-    if (dark === 'dark') {
-      window.classList.remove('dark');
-      setDark('light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      window.classList.add('dark');
-      setDark('dark');
-      localStorage.setItem('theme', 'dark');
-    }
-  };
-
-  useEffect(() => {
-    const theme = localStorage.getItem('theme');
-    if (theme) {
-      setDark(theme);
-      const window = document.documentElement;
-      window.classList.toggle('dark', theme === 'dark');
-    }
-  }, []);
+  
 
   return (
     <nav>
-      <div className={`h-16 fixed flex z-20 justify-between  w-full items-center`}>
-        <div className='absolute top-2 left-2 bg-gradient-to-tr from-purple-600 to-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-white'>
-          S
-        </div>
-        <ul className={`flex gap-4 text-sm items-center overflow-hidden
-               backdrop-blur-sm
-              ${dark === 'dark' ? 'dark:bg-slate-700/20' : 'bg-slate-100/20'} 
-              dark:text-slate-300 text-slate-700 px-3 py-2 rounded-full mx-auto`}>
-          <li onClick={toggleTheme} className='cursor-pointer px-2 py-2 dark:hover:bg-slate-100/10 hover:bg-black/5 rounded-full'>
-            {dark === 'light' ? <Sun className='text-yellow-500' /> : <Moon className='text-blue-500'/>}
-          </li>
-          <li  className=' hover:bg-black/5 p-2 cursor-pointer dark:hover:bg-slate-100/10'>
-            <a href='#home'>
-            Home
+      <div className={`fixed flex flex-col z-20  w-full items-center justify-center`}>
+        <ul className={`flex gap-6  mx-auto  text-sm items-center overflow-hidden
+               backdrop-blur-sm text-slate-200 px-10  max-sm:rounded-none   
+               rounded-full bg-white/10 mt-2 max-sm:mt-0`}>
+          
+          <li className='hover:bg-black/5 p-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-125'>
+            <a href='#home' className='flex flex-col items-center'>
+              <GoHomeFill size={20} title='Home'/>
+              <span>Home</span>
             </a>
           </li>
-          <li className='hover:bg-black/5 p-2 cursor-pointer dark:hover:bg-slate-100/10'>
-            <a href='#skills'> Skills</a>
+          <li className='hover:bg-black/5 p-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-125'>
+            <a href='#skills' className='flex flex-col items-center'> 
+            <ImPower size={20} title='Skills'/>
+            <span>Skills</span>
+            </a>
           </li>
-          <li className=' hover:bg-black/5 p-2 cursor-pointer dark:hover:bg-slate-100/10'>
-            <a href='#projects'> Projects</a>
+          <li className='hover:bg-black/5 p-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-125'>
+            <a href='#projects' className='flex flex-col items-center'>
+              <GrProjects size={20} title='Skills' />
+              <span>Projects</span>
+            </a>
           </li>
-          <li className='hover:bg-black/5 p-2 cursor-pointer dark:hover:bg-slate-100/10'>
-            <a href='#socials'>Socials</a>
-          </li>
-          <li 
-          className='bg-gradient-to-tr from-purple-600 to-blue-600 p-2 rounded-3xl text-white cursor-pointer '>
-            <a
-            href='/'
-            download='resume.pdf'
-            >
-            Download Resume
+
+          <li className='hover:bg-black/5 p-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-125'>
+            <a href='#contact' className='flex flex-col items-center'> 
+            <IoChatbubbles  size={20} title='Email me'/>
+            <span>Contact</span>
             </a>
           </li>
         </ul>

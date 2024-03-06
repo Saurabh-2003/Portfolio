@@ -44,22 +44,24 @@ const projects = [
 
 const Projects = () => {
   return (
-    <div className='flex flex-col px-20 py-20'>
-      <div className={`text-4xl py-10 underline text-center bg-clip-text bg-gradient-to-br font-mono 
-      from-violet-500 to-blue-600 text-transparent ${roboto.className}`}>
-        Projects
-      </div>
-      <div className='grid lg:grid-cols-4 gap-10 md:grid-cols-2 sm:grid-cols-1'>
-      {projects.map((project) => (
-        <ProjectCard
-          key={project.name}
-          image={project.img}
-          topicName={project.name}
-          description={project.description}
-          link={project.link}
-          tech={project.tech}
-        />
-      ))}
+    <div className='relative flex flex-col items-center justify-center  text-white overflow-hidden'>
+      <div className='py-20 px-10'>
+        <h1 className={`text-4xl text-center mb-14 text-slate-500 ${roboto.className}`}>
+           <span className='bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600'>My </span>
+            Projects
+        </h1>
+        <div className='grid lg:grid-cols-3 gap-10 md:grid-cols-2 sm:grid-cols-1'>
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.name}
+              image={project.img}
+              topicName={project.name}
+              description={project.description}
+              link={project.link}
+              tech={project.tech}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

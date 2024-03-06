@@ -1,36 +1,19 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
-import {Montserrat} from 'next/font/google'
+import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
-  display:'swap',
+  display: 'swap',
   fallback: ['Arial', 'sans-serif'],
 });
 
-const frontend = ['HTML', 'CSS', 'JAVASCRIPT', 'TYPESCRIPT', 'REACTJS', 'NEXTJS', 'TAILWIND'];
-const backend = ['NODE JS', 'EXPRESS', 'REST API', 'NEXT AUTH', 'REDUX'];
-const database = ['MONGODB', 'MY SQL', 'POSTGRES SQL'];
-const devops = ['GIT', 'DOCKER'];
-
-const getRandomColor = () => {
-  const randomChannel = () => Math.floor(Math.random() * 256);
-  const neonIntensity = 200; 
-
-  const r = (randomChannel() + neonIntensity) % 256;
-  const g = (randomChannel() + neonIntensity) % 256;
-  const b = (randomChannel() + neonIntensity) % 256;
-
-  const rgbToHex = (rgb:number) => {
-    let hex = rgb.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-  };
-
-  const color = '#' + rgbToHex(r) + rgbToHex(g) + rgbToHex(b);
-  return color;
-};
+const frontend = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React.js', 'Next.js', 'Tailwind'];
+const backend = ['Node.js', 'Express', 'REST API', 'Next Auth', 'Redux'];
+const database = ['MongoDB', 'MySQL', 'PostgreSQL'];
+const devops = ['Git', 'Docker'];
 
 
 const TechStack = () => {
@@ -44,21 +27,24 @@ const TechStack = () => {
     setIsVisible(inView);
   }, [inView]);
 
-  const renderList = (techStack: string[]) => (
-    <ul className={`flex text-sm flex-wrap gap-4 `}>
+  const renderList = (techStack : String[]) => (
+    <ul className={`flex flex-wrap gap-4`}>
       <AnimatePresence initial={false}>
         {isVisible &&
           techStack.map((tech, index) => (
             <motion.li
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className={`w-32 flex-grow  border-[1px] py-1 capitalize text-center rounded-lg bg-black/5 dark:bg-white/5 dark:text-white/80 text-slate-600`}
-              style={{ borderColor: getRandomColor() }}
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
+            className="px-8 py-2 rounded-full border border-y-1 text-center flex-grow relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border-transparent"
             >
-              {tech.toLocaleLowerCase()}
+                <div className="absolute inset-x-0 h-px w-full mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+                <div className="absolute inset-x-0 h-px w-full mx-auto -bottom-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+                <span className="relative z-20">
+                  {tech}
+                </span>
             </motion.li>
           ))}
       </AnimatePresence>
@@ -66,22 +52,31 @@ const TechStack = () => {
   );
 
   return (
-    <div ref={ref} className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 mx-10 mt-8 gap-6'>
-      <div className='flex flex-col  dark:border-[1px] dark:border-slate-500 dark:bg-neutral-900/20 bg-slate-200/30  rounded-xl py-4 px-4'>
-        <h1 className='dark:text-slate-400  text-slate-600  text-lg w-full text-center mb-3'>Frontend </h1>
+    <div ref={ref} className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-6 mx-10 mt-8'>
+      <div className='flex relative flex-col border border-gray-700 rounded-xl py-6 px-4'>
+        <h1 className='text-2xl text-gray-200 text-center mb-3'>Frontend</h1>
         {renderList(frontend)}
+        <div className="absolute inset-x-0 h-px w-full mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+                <div className="absolute inset-x-0 h-px w-full mx-auto -bottom-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
       </div>
-      <div className='flex flex-col dark:border-[1px]  dark:bg-neutral-900/20 bg-slate-200/30 dark:border-slate-500 rounded-lg py-4 px-4'>
-        <h1 className='dark:text-slate-400  text-slate-600  w-full text-lg text-center  mb-3'>Backend</h1>
+      <div className='flex relative flex-col border border-gray-700 rounded-xl py-6 px-4'>
+        <h1 className='text-2xl text-gray-200 text-center mb-3'>Backend</h1>
         {renderList(backend)}
+        <div className="absolute inset-x-0 h-px w-full mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+                <div className="absolute inset-x-0 h-px w-full mx-auto -bottom-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
       </div>
-      <div className='flex flex-col dark:border-[1px]  dark:bg-neutral-900/20 bg-slate-200/30 dark:border-slate-500 rounded-lg py-4 px-4'>
-        <h1 className='dark:text-slate-400  text-slate-600 w-full  text-lg text-center  mb-3'>Database</h1>
+      <div className='flex relative flex-col border border-gray-700 rounded-xl py-6 px-4'>
+        <h1 className='text-2xl text-gray-200 text-center mb-3'>Database</h1>
         {renderList(database)}
+        <div className="absolute inset-x-0 h-px w-full mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+                <div className="absolute inset-x-0 h-px w-full mx-auto -bottom-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
       </div>
-      <div className='flex flex-col dark:border-[1px]  dark:bg-neutral-900/20 bg-slate-200/30 dark:border-slate-500 rounded-lg py-4 px-4'>
-        <h1 className='dark:text-slate-400  text-slate-600 w-full  text-lg text-center  mb-3'>Devops</h1>
+      <div className='flex relative flex-col border border-gray-700  py-6 px-4'>
+        <h1 className='text-2xl text-gray-200 text-center mb-3'>Devops</h1>
         {renderList(devops)}
+        <div className="absolute inset-x-0 h-px w-full mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+        <div className="absolute inset-x-0 h-px w-full mx-auto -bottom-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+      
       </div>
     </div>
   );
