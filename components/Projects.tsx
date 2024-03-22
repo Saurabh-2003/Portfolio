@@ -63,23 +63,23 @@ const Projects = () => {
       <div className="relative h-fit flex items-center overflow-hidden">
         {/* Previous Button */}
       <div className="absolute top-1/2 left-10 max-sm:left-4 transform -translate-y-1/2 z-10">
-        <button onClick={prevProject} className="text-white focus:outline-none ">
+        <button onClick={prevProject} className="hover:text-white text-white/60 transition focus:outline-none ">
           <FaArrowLeft className=' size-16 max-md:size-12 max-sm:size-8'  />
         </button>
       </div>
 
       {/* Next Button */}
       <div className="absolute top-1/2 right-10 max-sm:right-4 transform -translate-y-1/2 z-10">
-        <button onClick={nextProject} className="text-white focus:outline-none">
+        <button onClick={nextProject} className="hover:text-white text-white/60 focus:outline-none">
         <FaArrowRight className='size-16 max-md:size-12 max-sm:size-8 ' />
         </button>
       </div>
         {/* For Projects */}
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex gap-12 px-20 transition-transform duration-[.8s] ease-in-out"
           style={{
-            transform: `translateX(-${activeIndex * 25}%)`,
-            width: `${projects.length * 100}%`,
+            transform: `translateX(-${activeIndex * 23}%)`,
+            width: `${projects.length * 80}%`,
           }}
         >
           {projects.map((project, index) => (

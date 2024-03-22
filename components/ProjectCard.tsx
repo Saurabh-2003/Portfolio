@@ -16,7 +16,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ image, link, topicName, description, tech }) => {
   return (
-    <div className='flex rounded-xl flex-col relative group overflow-hidden w-2/3 h-full items-center justify-center mb-4'>
+    <div className='flex rounded-xl w-full flex-col relative group overflow-hidden  h-full items-center justify-center mb-4'>
       <img className='h-full w-full object-fill' src={image} alt={topicName} />
       <div className=' translate-y-[65%] transition-all duration-700 group-hover:rounded-t-xl  absolute w-full h-full mt-10 flex flex-col overflow-hidden bg-white/60 backdrop-blur-md '>
         <span className='text-indigo-500 text-center text-xl font-bold'>{topicName}</span>
