@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
+import { motion, useDragControls } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import { Roboto } from 'next/font/google';
+import { FaAlignLeft, FaArrowLeft, FaArrowRight, FaCircle } from 'react-icons/fa';
+import { ImArrowLeft, ImPointLeft } from 'react-icons/im';
+
 
 const roboto = Roboto({
   weight: '500',
@@ -40,39 +43,70 @@ const projects = [
   },
 ];
 
+
+
 const Projects = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.3, // Adjust this threshold as needed
-  });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextProject = () => {
+    setActiveIndex((prevIndex) => (prevIndex === projects.length - 1 ? prevIndex : prevIndex + 1));
+  };
+
+  const prevProject = () => {
+    setActiveIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
+  };
 
   return (
-    <div className='relative min-h-screen flex flex-col items-center justify-center  text-white overflow-hidden'>
-      <div className='py-20 px-10'>
-        <h1 className={`text-4xl text-center mb-14 text-slate-500 ${roboto.className}`}>
-          <span className='bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600'>My </span>
-          Projects
-        </h1>
-        <div className='grid lg:grid-cols-3 gap-10 md:grid-cols-2 sm:grid-cols-1'>
+    <div className=" select-none mt-20  w-full h-screen overflow-hidden">
+      <h1 className='text-4xl mb-10 text-transparent bg-clip-text bg-gradient-to-l font-bold text-center from-purple-500 to-indigo-500'> Projects</h1>
+      
+      <div className="relative h-fit flex items-center overflow-hidden">
+        {/* Previous Button */}
+      <div className="absolute top-1/2 left-10 max-sm:left-4 transform -translate-y-1/2 z-10">
+        <button onClick={prevProject} className="text-white focus:outline-none ">
+          <FaArrowLeft className=' size-16 max-md:size-12 max-sm:size-8'  />
+        </button>
+      </div>
+
+      {/* Next Button */}
+      <div className="absolute top-1/2 right-10 max-sm:right-4 transform -translate-y-1/2 z-10">
+        <button onClick={nextProject} className="text-white focus:outline-none">
+        <FaArrowRight className='size-16 max-md:size-12 max-sm:size-8 ' />
+        </button>
+      </div>
+        {/* For Projects */}
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${activeIndex * 25}%)`,
+            width: `${projects.length * 100}%`,
+          }}
+        >
           {projects.map((project, index) => (
-            <motion.div
-              key={project.name}
-              ref={index === 0 ? ref : null} // Set the ref only for the first project
-              initial={{ opacity: 0}}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-              transition={{ duration: .8 }}
-            >
+            <div key={index} className="w-screen flex justify-center">
               <ProjectCard
                 image={project.img}
+                link={project.link}
                 topicName={project.name}
                 description={project.description}
-                link={project.link}
                 tech={project.tech}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
+
+      <div className='flex mt-8 items-center justify-center w-full'>
+        {projects.map((projects, index) => (
+          <FaCircle
+            key={index}
+            size={20}
+            className={index === activeIndex ? 'text-white mr-2' : 'text-gray-600 mr-2'}
+          />
+        ))}
+      </div>
+
+          
     </div>
   );
 };

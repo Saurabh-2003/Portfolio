@@ -38,7 +38,7 @@ const TechStack = () => {
             initial={{ opacity: 0}}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.15 }}
+            transition={{ duration: 0.8, delay: index * 0.2 }}
             className="px-8 py-2 transition-all rounded-full border border-y-1 text-center flex-grow relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] border-transparent"
             >
                 <div className="absolute inset-x-0 h-px w-full mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
