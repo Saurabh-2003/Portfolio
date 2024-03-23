@@ -1,7 +1,6 @@
 // Hero.tsx
 
 import { motion } from 'framer-motion';
-import TypeEffect from './TypeEffect';
 import { useInView } from 'react-intersection-observer';
 
 const Hero = () => {
@@ -27,7 +26,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: .5 }}
       >
-        <img src="/me.png" className="rounded-full mb-4 w-80  h-80  bg-slate-300 backdrop-blur-sm  shadow-lg" alt="Portrait" />
+        <img src="/me.png" className="rounded-full mb-4 size-80 max-sm:size-56  bg-slate-300 backdrop-blur-sm  shadow-lg" alt="Portrait" />
         
       </motion.div>
 
@@ -45,7 +44,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <TypeEffect />
+            Saurabh Thapliyal
           </motion.span>
         </motion.h1>
         <motion.p

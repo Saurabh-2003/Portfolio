@@ -23,8 +23,7 @@ const inter = Inter({
 const Skills = () => {
 
   const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: .2, 
+    triggerOnce: true,
   });
 
   return (
