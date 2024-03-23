@@ -19,8 +19,8 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ image, link, topicName, description, tech, color}) => {
   return (
-    <div className='flex cursor-grab md:mx-40 rounded-xl bg-black max-md:h-[400px] max-md:mx-4 w-full flex-col relative overflow-hidden items-center justify-end'>
-      <img className='object-cover select-none brightness-50 w-full h-full ' src={image} alt={topicName} />
+    <div className='flex cursor-grab lg:mx-40 mx-20 rounded-xl bg-black max-md:h-[400px] max-md:mx-4 w-full flex-col relative overflow-hidden items-center justify-end'>
+      <img className='object-cover blur-[1px] select-none brightness-50 w-full h-full ' src={image} alt={topicName} />
       <div className='absolute max-sm:px-2 bg-transparent py-10 w-full px-10 h-fit flex justify-end flex-col overflow-hidden'>
         <span className='text-white max-md:text-xl text-5xl font-bold'>{topicName}</span>
         <div className='text-xl text-slate-300 max-md:text-sm w-full'>
