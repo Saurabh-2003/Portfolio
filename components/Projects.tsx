@@ -114,12 +114,12 @@ const Projects: React.FC = () => {
 
   return (
     <div className="select-none   scroll-smooth mt-20 w-full  overflow-hidden">
-      <div className='flex max-sm:justify-center flex-col gap-2 mt-4 mb-4  ml-20 max-md:ml-0'>
-        <p className='flex gap-10 max-sm:gap-4 max-sm:justify-center items-center'>
-          <FaStar className='bg-stone-500/40 size-14 max-sm:size-10  rounded-full p-2' color='white'/>
+      <div className='flex justify-center items-center flex-col gap-2 mt-4 mb-4   max-md:ml-0'>
+        <p className='flex gap-6 max-sm:gap-4 max-sm:justify-center items-center'>
+          <FaStar className='bg-stone-500/40 size-12 max-sm:size-10  rounded-full p-2' color='white'/>
         <h1 className='text-3xl max-sm:text-xl max-md:text-2xl  text-stone-100 font-bold  '>Featured Projects</h1>
         </p>
-        <p className='text-slate-300 max-sm:text-center max-sm:text-sm text-lg'>A curated selection of my most interesting projects.</p>
+        <p className='text-slate-300 max-sm:text-center max-sm:text-sm text-lg'>A curated selection of my most interesting full stack projects.</p>
       </div>
       <div
         className="relative flex items-center overflow-hidden"
