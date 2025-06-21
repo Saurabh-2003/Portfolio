@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { Profile as PrismaProfile } from '@prisma/client';
 
 export async function GET() {
   try {
@@ -27,7 +28,7 @@ export async function GET() {
       prisma.contactMessage.count({
         where: { is_read: false },
       }),
-      prisma.profile.findFirst().then(profile => !!profile),
+      prisma.profile.findFirst().then((profile: PrismaProfile | null) => !!profile),
       prisma.contactInfo.findFirst().then(info => !!info),
     ]);
 
