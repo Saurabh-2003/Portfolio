@@ -1,37 +1,59 @@
-'use server';
+"use server";
 
-import { revalidatePath } from 'next/cache';
-import { prisma } from '@/lib/db';
-import { ExperienceFormData, Experience } from '@/types';
-import { z } from 'zod';
+import { revalidatePath } from "next/cache";
+import { prisma } from "@/lib/db";
+import { ExperienceFormData, Experience } from "@/types";
+import { z } from "zod";
 
 // Validation schema for experience data
 const experienceSchema = z.object({
-  company_name: z.string().min(1, 'Company name is required').max(200, 'Company name must be less than 200 characters'),
-  role: z.string().min(1, 'Role is required').max(200, 'Role must be less than 200 characters'),
-  duration: z.string().min(1, 'Duration is required').max(100, 'Duration must be less than 100 characters'),
-  role_description: z.string().min(1, 'Role description is required').max(3000, 'Role description must be less than 3000 characters'),
-  achievements: z.array(z.string().min(1, 'Achievement cannot be empty')).min(1, 'At least one achievement is required'),
-  challenges_faced: z.string().min(1, 'Challenges faced is required').max(2000, 'Challenges faced must be less than 2000 characters'),
-  learnings: z.string().min(1, 'Learnings is required').max(2000, 'Learnings must be less than 2000 characters'),
+  company_name: z
+    .string()
+    .min(1, "Company name is required")
+    .max(200, "Company name must be less than 200 characters"),
+  role: z
+    .string()
+    .min(1, "Role is required")
+    .max(200, "Role must be less than 200 characters"),
+  duration: z
+    .string()
+    .min(1, "Duration is required")
+    .max(100, "Duration must be less than 100 characters"),
+  role_description: z
+    .string()
+    .min(1, "Role description is required")
+    .max(3000, "Role description must be less than 3000 characters"),
+  achievements: z
+    .array(z.string().min(1, "Achievement cannot be empty"))
+    .min(1, "At least one achievement is required"),
+  challenges_faced: z
+    .string()
+    .min(1, "Challenges faced is required")
+    .max(2000, "Challenges faced must be less than 2000 characters"),
+  learnings: z
+    .string()
+    .min(1, "Learnings is required")
+    .max(2000, "Learnings must be less than 2000 characters"),
 });
 
 export async function getExperiences(): Promise<Experience[]> {
   try {
     const experiences = await prisma.experience.findMany({
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
     });
 
     // Parse achievements string back to array
-    return experiences.map(experience => ({
+    return experiences.map((experience) => ({
       ...experience,
-      achievements: experience.achievements ? JSON.parse(experience.achievements) : [],
+      achievements: experience.achievements
+        ? JSON.parse(experience.achievements)
+        : [],
     }));
   } catch (error) {
-    console.error('Error fetching experiences:', error);
-    throw new Error('Failed to fetch experiences');
+    console.error("Error fetching experiences:", error);
+    throw new Error("Failed to fetch experiences");
   }
 }
 
@@ -46,11 +68,13 @@ export async function getExperience(id: string): Promise<Experience | null> {
     // Parse achievements string back to array
     return {
       ...experience,
-      achievements: experience.achievements ? JSON.parse(experience.achievements) : [],
+      achievements: experience.achievements
+        ? JSON.parse(experience.achievements)
+        : [],
     };
   } catch (error) {
-    console.error('Error fetching experience:', error);
-    throw new Error('Failed to fetch experience');
+    console.error("Error fetching experience:", error);
+    throw new Error("Failed to fetch experience");
   }
 }
 
@@ -75,9 +99,9 @@ export async function createExperience(data: ExperienceFormData) {
     });
 
     // Revalidate the pages that use this data
-    revalidatePath('/');
-    revalidatePath('/dashboard');
-    revalidatePath('/dashboard/experience');
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/experience");
 
     return {
       success: true,
@@ -85,17 +109,17 @@ export async function createExperience(data: ExperienceFormData) {
         ...experience,
         achievements: JSON.parse(experience.achievements),
       },
-      message: 'Experience created successfully',
+      message: "Experience created successfully",
     };
   } catch (error) {
-    console.error('Error creating experience:', error);
+    console.error("Error creating experience:", error);
 
     if (error instanceof z.ZodError) {
       return {
         success: false,
-        error: 'Validation failed',
-        details: error.errors.map(err => ({
-          field: err.path.join('.'),
+        error: "Validation failed",
+        details: error.errors.map((err) => ({
+          field: err.path.join("."),
           message: err.message,
         })),
       };
@@ -103,7 +127,7 @@ export async function createExperience(data: ExperienceFormData) {
 
     return {
       success: false,
-      error: 'Failed to create experience',
+      error: "Failed to create experience",
     };
   }
 }
@@ -121,7 +145,7 @@ export async function updateExperience(id: string, data: ExperienceFormData) {
     if (!existingExperience) {
       return {
         success: false,
-        error: 'Experience not found',
+        error: "Experience not found",
       };
     }
 
@@ -142,9 +166,9 @@ export async function updateExperience(id: string, data: ExperienceFormData) {
     });
 
     // Revalidate the pages that use this data
-    revalidatePath('/');
-    revalidatePath('/dashboard');
-    revalidatePath('/dashboard/experience');
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/experience");
 
     return {
       success: true,
@@ -152,17 +176,17 @@ export async function updateExperience(id: string, data: ExperienceFormData) {
         ...experience,
         achievements: JSON.parse(experience.achievements),
       },
-      message: 'Experience updated successfully',
+      message: "Experience updated successfully",
     };
   } catch (error) {
-    console.error('Error updating experience:', error);
+    console.error("Error updating experience:", error);
 
     if (error instanceof z.ZodError) {
       return {
         success: false,
-        error: 'Validation failed',
-        details: error.errors.map(err => ({
-          field: err.path.join('.'),
+        error: "Validation failed",
+        details: error.errors.map((err) => ({
+          field: err.path.join("."),
           message: err.message,
         })),
       };
@@ -170,7 +194,7 @@ export async function updateExperience(id: string, data: ExperienceFormData) {
 
     return {
       success: false,
-      error: 'Failed to update experience',
+      error: "Failed to update experience",
     };
   }
 }
@@ -184,7 +208,7 @@ export async function deleteExperience(id: string) {
     if (!existingExperience) {
       return {
         success: false,
-        error: 'Experience not found',
+        error: "Experience not found",
       };
     }
 
@@ -193,19 +217,19 @@ export async function deleteExperience(id: string) {
     });
 
     // Revalidate the pages that use this data
-    revalidatePath('/');
-    revalidatePath('/dashboard');
-    revalidatePath('/dashboard/experience');
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/experience");
 
     return {
       success: true,
-      message: 'Experience deleted successfully',
+      message: "Experience deleted successfully",
     };
   } catch (error) {
-    console.error('Error deleting experience:', error);
+    console.error("Error deleting experience:", error);
     return {
       success: false,
-      error: 'Failed to delete experience',
+      error: "Failed to delete experience",
     };
   }
 }
@@ -214,17 +238,19 @@ export async function getExperiencesForPublic(): Promise<Experience[]> {
   try {
     const experiences = await prisma.experience.findMany({
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
     });
 
     // Parse achievements string back to array
-    return experiences.map(experience => ({
+    return experiences.map((experience) => ({
       ...experience,
-      achievements: experience.achievements ? JSON.parse(experience.achievements) : [],
+      achievements: experience.achievements
+        ? JSON.parse(experience.achievements)
+        : [],
     }));
   } catch (error) {
-    console.error('Error fetching public experiences:', error);
+    console.error("Error fetching public experiences:", error);
     return [];
   }
 }
@@ -238,7 +264,7 @@ export async function duplicateExperience(id: string) {
     if (!existingExperience) {
       return {
         success: false,
-        error: 'Experience not found',
+        error: "Experience not found",
       };
     }
 
@@ -255,7 +281,7 @@ export async function duplicateExperience(id: string) {
     });
 
     // Revalidate the pages that use this data
-    revalidatePath('/dashboard/experience');
+    revalidatePath("/dashboard/experience");
 
     return {
       success: true,
@@ -263,13 +289,13 @@ export async function duplicateExperience(id: string) {
         ...duplicatedExperience,
         achievements: JSON.parse(duplicatedExperience.achievements),
       },
-      message: 'Experience duplicated successfully',
+      message: "Experience duplicated successfully",
     };
   } catch (error) {
-    console.error('Error duplicating experience:', error);
+    console.error("Error duplicating experience:", error);
     return {
       success: false,
-      error: 'Failed to duplicate experience',
+      error: "Failed to duplicate experience",
     };
   }
 }
@@ -283,25 +309,25 @@ export async function reorderExperiences(experienceIds: string[]) {
       await prisma.experience.update({
         where: { id: experienceIds[i] },
         data: {
-          updated_at: new Date(Date.now() + i * 1000) // Ensure unique timestamps
+          updated_at: new Date(Date.now() + i * 1000), // Ensure unique timestamps
         },
       });
     }
 
     // Revalidate the pages that use this data
-    revalidatePath('/');
-    revalidatePath('/dashboard');
-    revalidatePath('/dashboard/experience');
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/experience");
 
     return {
       success: true,
-      message: 'Experience order updated successfully',
+      message: "Experience order updated successfully",
     };
   } catch (error) {
-    console.error('Error reordering experiences:', error);
+    console.error("Error reordering experiences:", error);
     return {
       success: false,
-      error: 'Failed to reorder experiences',
+      error: "Failed to reorder experiences",
     };
   }
 }

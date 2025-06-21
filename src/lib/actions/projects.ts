@@ -87,7 +87,9 @@ export async function getProjects(): Promise<Project[]> {
         created_at: "desc",
       },
     });
-    return projects.map(mapRawProjectToProject);
+    return projects.map((project) =>
+      mapRawProjectToProject(project as RawProject),
+    );
   } catch (error) {
     console.error("Error fetching projects:", error);
     throw new Error("Failed to fetch projects");

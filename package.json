@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",  
+    "dev": "next dev --turbopack",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
-    "build": "pnpm typecheck && pnpm lint && next build"
+    "build": "prisma generate && pnpm typecheck && pnpm lint && next build",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

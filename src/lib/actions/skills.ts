@@ -5,6 +5,16 @@ import { prisma } from "@/lib/db";
 import { SkillFormData, Skill, SkillCategory, SkillsByCategory } from "@/types";
 import { z } from "zod";
 
+// Type for Prisma skill return data
+interface PrismaSkill {
+  id: string;
+  name: string;
+  category: string;
+  proficiency_level: number | null;
+  created_at: Date;
+  updated_at: Date;
+}
+
 // Validation schema for skill data
 const skillSchema = z.object({
   name: z
@@ -46,8 +56,9 @@ export async function getSkills(): Promise<Skill[]> {
       ],
     });
 
-    return skills.map((skill) => ({
+    return skills.map((skill: PrismaSkill) => ({
       ...skill,
+      category: skill.category as SkillCategory,
       proficiency_level: skill.proficiency_level ?? undefined,
     }));
   } catch (error) {
@@ -252,9 +263,10 @@ export async function getSkillsByCategory(): Promise<SkillsByCategory> {
       other: [],
     };
 
-    skills.forEach((skill) => {
-      skillsByCategory[skill.category].push({
+    skills.forEach((skill: PrismaSkill) => {
+      skillsByCategory[skill.category as SkillCategory].push({
         ...skill,
+        category: skill.category as SkillCategory,
         proficiency_level: skill.proficiency_level ?? undefined,
       });
     });
@@ -300,8 +312,9 @@ export async function getSkillsBySpecificCategory(
       ],
     });
 
-    return skills.map((skill) => ({
+    return skills.map((skill: PrismaSkill) => ({
       ...skill,
+      category: skill.category as SkillCategory,
       proficiency_level: skill.proficiency_level ?? undefined,
     }));
   } catch (error) {
