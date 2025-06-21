@@ -2,9 +2,13 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,                        // prevent JS files (optional, but safer)
     "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": true,                   // catch `any` types
+    "noUnusedLocals": true,                  // catch unused variables
+    "noUnusedParameters": true,              // catch unused function args
+    "noFallthroughCasesInSwitch": true,      // catch missing `break` in switch
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
