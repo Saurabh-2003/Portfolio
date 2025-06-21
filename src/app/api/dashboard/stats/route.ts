@@ -14,6 +14,16 @@ type PrismaProfile = {
   updated_at: Date;
 };
 
+type PrismaContactInfo = {
+  id: string;
+  email: string;
+  phone?: string | null;
+  linkedin?: string | null;
+  github?: string | null;
+  created_at: Date;
+  updated_at: Date;
+};
+
 export async function GET() {
   try {
     // Check authentication
@@ -40,7 +50,7 @@ export async function GET() {
         where: { is_read: false },
       }),
       prisma.profile.findFirst().then((profile: PrismaProfile | null) => !!profile),
-      prisma.contactInfo.findFirst().then(info => !!info),
+      prisma.contactInfo.findFirst().then((info: PrismaContactInfo | null) => !!info),
     ]);
 
     // Calculate completion percentage
