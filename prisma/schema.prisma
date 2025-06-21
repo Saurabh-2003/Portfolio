@@ -1,0 +1,186 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Authentication Model
+model User {
+  id            String   @id @default(cuid())
+  username      String   @unique
+  password_hash String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("users")
+}
+
+// Profile Module
+enum ProfileAvailability {
+  available
+  not_available
+  freelance
+}
+
+model Profile {
+  id            String   @id @default(cuid())
+  name          String
+  about         String
+  profile_image String?
+  location      String?
+  headline      String?
+  availability  ProfileAvailability?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("profiles")
+}
+
+// Projects Module
+enum ProjectStatus {
+  completed
+  ongoing
+  draft
+}
+
+model Project {
+  id            String        @id @default(cuid())
+  title         String
+  description   String
+  image         String?
+  image_path    String?
+  video         String?
+  status        ProjectStatus
+  tech_stack    String
+  github_link   String
+  deployed_link String?
+  duration      String?      // New: duration of the project
+  role          String?      // New: your role in the project
+  team_size     Int?         // New: team size
+  features      String?      // New: main features (comma separated or JSON)
+  learnings     String?      // New: what you learned (comma separated or JSON)
+  challenges    String?      // New: challenges faced (comma separated or JSON)
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+
+  @@map("projects")
+}
+
+// Experience Module
+model Experience {
+  id               String   @id @default(cuid())
+  company_name     String
+  role             String
+  duration         String
+  role_description String
+  achievements     String
+  challenges_faced String
+  learnings        String
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  @@map("experiences")
+}
+
+// Skills Module
+enum SkillCategory {
+  frontend
+  backend
+  devops
+  database
+  tools
+  languages
+  frameworks
+  other
+}
+
+model Skill {
+  id               String        @id @default(cuid())
+  name             String
+  category         SkillCategory
+  proficiency_level Int?         @default(5) // 1-5 scale
+  created_at       DateTime      @default(now())
+  updated_at       DateTime      @updatedAt
+
+  @@unique([name, category])
+  @@map("skills")
+}
+
+// Contact Module
+model ContactInfo {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  phone      String?
+  linkedin   String?
+  github     String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("contact_info")
+}
+
+// Contact Messages from the public contact form
+model ContactMessage {
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  subject    String
+  message    String
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  @@map("contact_messages")
+}
+
+// SEO Configuration (optional for future use)
+model SeoConfig {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  keywords     String
+  og_image     String?
+  twitter_handle String?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  @@map("seo_config")
+}
+
+// Theme Configuration
+model ThemeConfig {
+  id           String   @id @default(cuid())
+  mode         String   @default("light") // 'light' or 'dark'
+  accent_color String   @default("#000000")
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  @@map("theme_config")
+}
+
+// Goals Module
+model Goal {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("goals")
+}
+
+// Achievements Module
+model Achievement {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("achievements")
+}
