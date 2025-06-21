@@ -1,7 +1,18 @@
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { Profile as PrismaProfile } from '@prisma/client';
+
+type PrismaProfile = {
+  id: string;
+  name: string;
+  about: string;
+  profile_image?: string | null;
+  location?: string | null;
+  headline?: string | null;
+  availability?: 'available' | 'not_available' | 'freelance' | null;
+  created_at: Date;
+  updated_at: Date;
+};
 
 export async function GET() {
   try {
